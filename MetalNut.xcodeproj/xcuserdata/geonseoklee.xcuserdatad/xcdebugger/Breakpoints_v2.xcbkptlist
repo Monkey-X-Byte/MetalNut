@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "D0007B39-8321-4E3C-956D-FF90442E5FBE"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B32D928-1295-4BF1-A4DD-BF0A6BC36984"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MetalNut/Filters/AmaroFilter.metal"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "amaroKernel(texture2d&lt;half, access::write&gt; outputTexture [[texture(0)]], texture2d&lt;half, access::read&gt; inputTexture [[texture(1)]], texture2d&lt;half, access::sample&gt; blackboard [[texture(2)]], texture2d&lt;half, access::sample&gt; map [[texture(3)]], texture2d&lt;half, access::sample&gt; overlay [[texture(4)]], constant float *intensity [[buffer(0)]], uint2 gid [[thread_position_in_grid]])"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
