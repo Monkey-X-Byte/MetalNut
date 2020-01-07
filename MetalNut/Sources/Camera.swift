@@ -385,13 +385,11 @@ extension Camera: ImageSource {
     }
     
     public func add(chain: BaseFilter) {
-        lock.wait()
         for (idx, consumer) in consumers.enumerated() {
             chain.add(consumer: consumer, at: idx)
         }
         removeAllConsumers()
         add(consumer: chain, at: 0)
-        lock.signal()
     }
     
     public func remove(consumer: ImageConsumer) {
@@ -419,25 +417,9 @@ extension Camera: ImageSource {
 extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if output == videoDataOutput {
-            guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) ,
-                let textureCache = textureCache else { return }
-            let bufferWidth = CVPixelBufferGetWidth(imageBuffer)
-            let bufferHeight = CVPixelBufferGetHeight(imageBuffer)
-            let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+			guard let texture = texture(with: sampleBuffer) else { return }
             cameraFrameProcessingQueue.async { [weak self] in
                 guard let self = self else { return }
-                var imageTexture: CVMetalTexture?
-                let result = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, imageBuffer, nil, .bgra8Unorm, bufferWidth, bufferHeight, 0, &imageTexture)
-                guard
-                    let unwrappedImageTexture = imageTexture,
-                    let textureRef = CVMetalTextureGetTexture(unwrappedImageTexture),
-                    result == kCVReturnSuccess
-                    else {
-                        return
-                }
-                
-                let texture = Texture(mtlTexture: textureRef, type: .videoFrame(timestamp: timestamp))
-                
                 for consumer in self.consumers { consumer.newTextureAvailable(texture, from: self) }
             }
             
@@ -445,6 +427,24 @@ extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDa
             self.processAudioSampleBuffer(sampleBuffer)
         }
     }
+	
+	public func texture(with sampleBuffer: CMSampleBuffer) -> Texture? {
+		guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) ,
+			let textureCache = textureCache else { return nil }
+		let bufferWidth = CVPixelBufferGetWidth(imageBuffer)
+		let bufferHeight = CVPixelBufferGetHeight(imageBuffer)
+		let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+		var imageTexture: CVMetalTexture?
+		let result = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, imageBuffer, nil, .bgra8Unorm, bufferWidth, bufferHeight, 0, &imageTexture)
+		guard
+			let unwrappedImageTexture = imageTexture,
+			let textureRef = CVMetalTextureGetTexture(unwrappedImageTexture),
+			result == kCVReturnSuccess
+			else {
+				return nil
+		}
+		return Texture(mtlTexture: textureRef, type: .videoFrame(timestamp: timestamp))
+	}
     
     public func processAudioSampleBuffer(_ sampleBuffer:CMSampleBuffer) {
         self.audioEncodingTarget?.processAudioBuffer(sampleBuffer)
@@ -454,14 +454,18 @@ extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDa
 extension Camera: AVCapturePhotoCaptureDelegate {
     public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         if error != nil { return }
-        
-        if let sampleBuffer = photoSampleBuffer, let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+        if let sampleBuffer = photoSampleBuffer {
+			guard let texture = texture(with: sampleBuffer) else { return }
             cameraPhotoProcessingQueue.async { [weak self] in
-//                let image = CIImage(cvPixelBuffer: imageBuffer)
-//                let trasnform = image.orientationTransform(for: .right)
-//                let transformed = image.transformed(by: trasnform)
-//                let cropped = transformed.cropped(to: CGRect(x: 0, y: 0, width: transformed.extent.width, height: transformed.extent.width))
-//                self?.updateTargetsWithImage(Image(image: cropped, type: .photo))
+				guard let self = self else { return }
+				let source = StaticImageSource(texture: texture.metalTexture)
+				let filter = RotateFilter(angle: 90, fitSize: true)
+				source.add(consumer: filter)
+				source.transmitTexture()
+				if let metalTexture = filter.outputTexture {
+					let result = Texture(mtlTexture: metalTexture, type: .photo)
+					for consumer in self.consumers { consumer.newTextureAvailable(result, from: filter)}
+				}
             }
         }
     }

@@ -116,8 +116,8 @@ public class VideoWriter: ImageConsumer, AudioEncodingTarget {
     }
     public func newTextureAvailable(_ texture: Texture, from source: ImageSource) {
         guard isRecording else { return }
-        guard let frameTime = texture.type.timestamp,
-        (frameTime != previousFrameTime) else { return }
+		guard case .videoFrame(let frameTime) = texture.type,
+			frameTime != previousFrameTime else { return }
         
         guard let pixelBufferPool = assetWriterPixelBufferInput.pixelBufferPool else { return }
         

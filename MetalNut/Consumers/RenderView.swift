@@ -35,6 +35,7 @@ public class RenderView: MTKView, ImageConsumer {
     }
     
     public func newTextureAvailable(_ texture: Texture, from source: ImageSource) {
+		guard case .videoFrame = texture.type else { return }
         self.drawableSize = CGSize(width: texture.metalTexture.width, height: texture.metalTexture.height)
         currentTexture = texture
         self.draw()

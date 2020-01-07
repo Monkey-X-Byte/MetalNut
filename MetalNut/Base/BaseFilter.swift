@@ -193,13 +193,11 @@ open class BaseFilter: ImageSource, ImageConsumer {
     }
     
     public func add(chain: BaseFilter) {
-        lock.wait()
         for (idx, consumer) in consumers.enumerated() {
             chain.add(consumer: consumer, at: idx)
         }
         removeAllConsumers()
         add(consumer: chain, at: 0)
-        lock.signal()
     }
     
     public func removeSelf() {
