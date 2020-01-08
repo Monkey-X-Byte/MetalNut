@@ -28,8 +28,8 @@ public class Camera: NSObject {
     // Processing Queue
     let cameraProcessingQueue = DispatchQueue.global()
     let audioProcessingQueue = DispatchQueue.global()
-    let cameraFrameProcessingQueue = DispatchQueue(label: "com.thirtyninedegreesc.framework.BrazilNut.cameraFrameProcessingQueue")
-    let cameraPhotoProcessingQueue = DispatchQueue(label: "com.thirtyninedegreesc.framework.BrazilNut.cameraPhotoProcessingQueue")
+    let cameraFrameProcessingQueue = DispatchQueue(label: "com.github.hxperl.framework.MetalNut.cameraFrameProcessingQueue")
+    let cameraPhotoProcessingQueue = DispatchQueue(label: "com.github.hxperl.framework.MetalNut.cameraPhotoProcessingQueue")
     
     // Device
     var audioDevice: AVCaptureDevice?

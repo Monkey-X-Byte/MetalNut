@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		12226CDB23A396FC0010524B /* TestLookupFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12226CDA23A396FC0010524B /* TestLookupFilter.swift */; };
-		12226D3E23A76C1A0010524B /* MadeCIFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12226D3D23A76C1A0010524B /* MadeCIFilter.swift */; };
-		12226D4023A76C350010524B /* MadeCIFilter2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12226D3F23A76C350010524B /* MadeCIFilter2.swift */; };
-		12226D4223A76C550010524B /* MadeCIFilter3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12226D4123A76C550010524B /* MadeCIFilter3.swift */; };
-		12226D4423A76C690010524B /* MadeCIFilter4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12226D4323A76C690010524B /* MadeCIFilter4.swift */; };
-		12226D4623A76C7D0010524B /* MadeCIFilter5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12226D4523A76C7D0010524B /* MadeCIFilter5.swift */; };
-		12226D6823A87B2E0010524B /* CustomCIFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12226D6723A87B2D0010524B /* CustomCIFilter.swift */; };
 		590EE15623AC8406009313BD /* WhiteBalanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590EE15523AC8406009313BD /* WhiteBalanceFilter.swift */; };
 		590EE15823AC8428009313BD /* WhiteBalanceFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = 590EE15723AC8428009313BD /* WhiteBalanceFilter.metal */; };
 		590EE15A23AC8456009313BD /* BrightnessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590EE15923AC8456009313BD /* BrightnessFilter.swift */; };
@@ -67,13 +60,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12226CDA23A396FC0010524B /* TestLookupFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLookupFilter.swift; sourceTree = "<group>"; };
-		12226D3D23A76C1A0010524B /* MadeCIFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeCIFilter.swift; sourceTree = "<group>"; };
-		12226D3F23A76C350010524B /* MadeCIFilter2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeCIFilter2.swift; sourceTree = "<group>"; };
-		12226D4123A76C550010524B /* MadeCIFilter3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeCIFilter3.swift; sourceTree = "<group>"; };
-		12226D4323A76C690010524B /* MadeCIFilter4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeCIFilter4.swift; sourceTree = "<group>"; };
-		12226D4523A76C7D0010524B /* MadeCIFilter5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeCIFilter5.swift; sourceTree = "<group>"; };
-		12226D6723A87B2D0010524B /* CustomCIFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCIFilter.swift; sourceTree = "<group>"; };
 		590EE15523AC8406009313BD /* WhiteBalanceFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBalanceFilter.swift; sourceTree = "<group>"; };
 		590EE15723AC8428009313BD /* WhiteBalanceFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = WhiteBalanceFilter.metal; sourceTree = "<group>"; };
 		590EE15923AC8456009313BD /* BrightnessFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessFilter.swift; sourceTree = "<group>"; };
@@ -165,13 +151,6 @@
 				59EF01DB239F6AB4005B5F28 /* AshbyFilter.metal */,
 				591D44A923A358F5005E9698 /* LookupFilter.swift */,
 				591D44A723A358E3005E9698 /* LookupFilter.metal */,
-				12226CDA23A396FC0010524B /* TestLookupFilter.swift */,
-				12226D3D23A76C1A0010524B /* MadeCIFilter.swift */,
-				12226D3F23A76C350010524B /* MadeCIFilter2.swift */,
-				12226D4123A76C550010524B /* MadeCIFilter3.swift */,
-				12226D4323A76C690010524B /* MadeCIFilter4.swift */,
-				12226D4523A76C7D0010524B /* MadeCIFilter5.swift */,
-				12226D6723A87B2D0010524B /* CustomCIFilter.swift */,
 				590EE15523AC8406009313BD /* WhiteBalanceFilter.swift */,
 				590EE15723AC8428009313BD /* WhiteBalanceFilter.metal */,
 				590EE15923AC8456009313BD /* BrightnessFilter.swift */,
@@ -342,12 +321,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				59EF01C6239F66AF005B5F28 /* BilateralBlurFilter.swift in Sources */,
-				12226D4023A76C350010524B /* MadeCIFilter2.swift in Sources */,
 				59EF01B2239F646E005B5F28 /* RotateFilter.metal in Sources */,
 				590EE16623AC8CA4009313BD /* SaturationFilter.swift in Sources */,
-				12226CDB23A396FC0010524B /* TestLookupFilter.swift in Sources */,
 				59B62BA623A0D0830028326F /* BaseFilterGroup.swift in Sources */,
-				12226D3E23A76C1A0010524B /* MadeCIFilter.swift in Sources */,
 				590EE16823AC8CD4009313BD /* SaturationFilter.metal in Sources */,
 				590EE15C23AC8479009313BD /* BrightnessFilter.metal in Sources */,
 				59EF01CA239F6707005B5F28 /* BeautyFilter.swift in Sources */,
@@ -361,7 +337,6 @@
 				59B62BC023A0D8C60028326F /* ImageConsumer.swift in Sources */,
 				59B62BC223A0D8E90028326F /* ImageSource.swift in Sources */,
 				59ADF47E239F5F140007B8A5 /* MN1977Filter.swift in Sources */,
-				12226D6823A87B2E0010524B /* CustomCIFilter.swift in Sources */,
 				59B3D43D237E8CAD00855A39 /* Matrix.swift in Sources */,
 				59EF01B0239F641E005B5F28 /* RotateFilter.swift in Sources */,
 				59EF01B4239F6499005B5F28 /* CropFilter.swift in Sources */,
@@ -369,7 +344,6 @@
 				59B3D439237E8A6F00855A39 /* Size.swift in Sources */,
 				59EF01D0239F67CA005B5F28 /* AdenFilter.metal in Sources */,
 				591D44AA23A358F5005E9698 /* LookupFilter.swift in Sources */,
-				12226D4223A76C550010524B /* MadeCIFilter3.swift in Sources */,
 				591D44A823A358E3005E9698 /* LookupFilter.metal in Sources */,
 				59EF01C8239F66B8005B5F28 /* BilateralBlurFilter.metal in Sources */,
 				590EE16423AC8C88009313BD /* ContrastFilter.metal in Sources */,
@@ -381,9 +355,7 @@
 				59B32B70239915CE00D32C70 /* Camera.swift in Sources */,
 				59EF01B6239F64C9005B5F28 /* CropFilter.metal in Sources */,
 				59ADF480239F5F2E0007B8A5 /* MN1977Filte.metal in Sources */,
-				12226D4623A76C7D0010524B /* MadeCIFilter5.swift in Sources */,
 				59B62B7423A0AB580028326F /* Passthrough.metal in Sources */,
-				12226D4423A76C690010524B /* MadeCIFilter4.swift in Sources */,
 				59EF01C4239F6663005B5F28 /* SobelEdgeDetectionFilter.metal in Sources */,
 				59B3D432237E81A500855A39 /* Texture.swift in Sources */,
 				59EF01BE239F65A9005B5F28 /* ResizeFilter.swift in Sources */,

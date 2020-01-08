@@ -13,7 +13,7 @@ public class LookupFilter: BaseFilter {
     
     public init(intensity: Float = 1) {
         self.intensity = intensity
-        super.init(kernelFunctionName: "lookupKernel", samplers: ["lookup": "original_lookup.png"])
+        super.init(kernelFunctionName: "lookupKernel", samplers: ["lookup": "lookup.png"])
     }
     
     public override func updateParameters(forComputeCommandEncoder encoder: MTLComputeCommandEncoder) {
