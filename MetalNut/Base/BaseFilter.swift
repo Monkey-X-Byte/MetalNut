@@ -106,7 +106,7 @@ open class BaseFilter: ImageSource, ImageConsumer {
             _outputTexture!.width != outputSize.width ||
             _outputTexture!.height != outputSize.height {
             let descriptor = MTLTextureDescriptor()
-            descriptor.pixelFormat = .rgba8Unorm
+            descriptor.pixelFormat = .bgra8Unorm
             descriptor.width = outputSize.width
             descriptor.height = outputSize.height
             descriptor.usage = [.shaderRead, .shaderWrite]
