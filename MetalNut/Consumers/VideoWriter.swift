@@ -163,22 +163,16 @@ public class VideoWriter: ImageConsumer, AudioEncodingTarget {
 
         let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
         
-        let outputTexture:Texture
-        if (Int(round(self.size.width)) != texture.metalTexture.width) && (Int(round(self.size.height)) != texture.metalTexture.height) {
-            let commandBuffer = MetalDevice.sharedCommandQueue.makeCommandBuffer()
-            
-            outputTexture = Texture(device: MetalDevice.sharedDevice, width: Int(self.size.width), height: Int(self.size.height), type: texture.type)
+		let commandBuffer = MetalDevice.sharedCommandQueue.makeCommandBuffer()
+		
+		let outputTexture = Texture(device: MetalDevice.sharedDevice, width: Int(self.size.width), height: Int(self.size.height), type: texture.type)
 
-            commandBuffer?.renderQuad(pipelineState: renderPipelineState, inputTexture: texture, outputTexture: outputTexture)
-            commandBuffer?.commit()
-            commandBuffer?.waitUntilCompleted()
-        } else {
-            outputTexture = texture
-        }
-        
-        let region = MTLRegionMake2D(0, 0, outputTexture.metalTexture.width, outputTexture.metalTexture.height)
-        
-        outputTexture.metalTexture.getBytes(pixelBufferBytes, bytesPerRow: bytesPerRow, from: region, mipmapLevel: 0)
+		commandBuffer?.renderQuad(pipelineState: renderPipelineState, inputTexture: texture, outputTexture: outputTexture)
+		commandBuffer?.commit()
+		commandBuffer?.waitUntilCompleted()
+		
+		let region = MTLRegionMake2D(0, 0, outputTexture.metalTexture.width, outputTexture.metalTexture.height)
+		outputTexture.metalTexture.getBytes(pixelBufferBytes, bytesPerRow: bytesPerRow, from: region, mipmapLevel: 0)
     }
     
     

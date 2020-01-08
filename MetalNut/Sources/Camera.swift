@@ -464,7 +464,7 @@ extension Camera: AVCapturePhotoCaptureDelegate {
 				source.transmitTexture()
 				if let metalTexture = filter.outputTexture {
 					let result = Texture(mtlTexture: metalTexture, type: .photo)
-					for consumer in self.consumers { consumer.newTextureAvailable(result, from: filter)}
+					for consumer in self.consumers { consumer.newTextureAvailable(result, from: self)}
 				}
             }
         }
